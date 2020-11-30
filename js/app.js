@@ -125,7 +125,7 @@ function studentCreate(){
     
     let exists = checkIfStudentExists(StudentID);
     if(exists){
-        alert('Student exists with the same ID')
+        alert('Student exists with the same ID');
     }else if(StudentID, StudentName,StudentSurname, StudentPoints != '' && CheckNameSurnameLetters() == true) {
         let newStudent = new Student(StudentID, StudentName, StudentSurname, StudentPoints);
         students.push(newStudent);
@@ -168,9 +168,9 @@ function studentCreate(){
         data.innerHTML = `New Student:  ${StudentID}  ${StudentName}  ${StudentSurname} ${StudentPoints}`;
         // Reset
         let btnReset = document.createElement('button');
-        btnReset.innerText = 'Reset Form'
+        btnReset.innerText = 'Reset Form';
+        btnReset.id = 'btnReset'
         btnReset.onclick = function(){
-            dataCont.innerHTML = '';
             dataCont.innerHTML = '';
         }
         dataCont.appendChild(table);
@@ -187,15 +187,8 @@ function studentCreate(){
 }
 
 // Function to Check if the student exists already
-function checkIfStudentExists(StudentID){
-    let exists = false;
-    for (let i = 0; i < students; i++){
-        if(studentId.value == students[i].id){
-            exists = true;
-            alert('some kind of alert');
-        }
-    }
-    return exists;
+function checkIfStudentExists(studentId){
+    return students.some(student => student.id === studentId); // This will return a boolean by default if the student exists inside the students array or not
 }
 
 
